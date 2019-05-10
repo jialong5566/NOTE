@@ -1,0 +1,83 @@
+1严格模式
+在全局作用域或者函数作用域上面写 "use strict"
+规则：变量必须声明
+     对象字面量内部同名属性会报错
+     不能对表达式进行delete
+     函数参数名不能重复 function(a,a){}
+     关键字不能用
+     this 为null或者undefined时候，不能转为全局对象
+     eval无效
+     arguments不能在函数体中更改
+     arguments.callee禁止使用
+    with禁止使用
+================================================
+JSON.parse('{"a":2,"b":3}',function(key,val){  //处理后传出  })
+JSON.stringify({a:13,b:14},function(key,val){
+  //若return undefined，则这组k-v不在结果中
+  if(key=="a"){
+    return undefined;//结果中不会出现"a":2键值对
+  }
+},num)//num为输出格式化后的空格缩进数目，num为0不进行格式化。
+===============================================
+用法一：
+Object.defineProperty(obj,prop,{
+	value："showVal",
+	writable:boolean,
+	enumerable：boolean,
+	configable:boolean
+})
+用法二：
+Object.defineProperty(obj,prop,{
+    temp:"val",
+    set(newVal){  temp = newVal},
+    get(){ return temp }
+})
+
+Object.create(obj);
+以obj为原型，产生一个副本，可以用于原型继承
+示例：
+function origin(){}
+function target(){}
+target.prototype = Object.create(origin.prototype)
+
+Object.freeze(obj)//冻结对象，返回被冻结的对象
+
+Object.is(NaN,NaN)//比较两个值，解决NaN不等的问题
+
+===============================================================
+数组
+boolean = Array.isArray(test);
+arr.forEach((ele,index,arr)=>{})
+newArr = arr.map((ele,index,arr)=>{return newEle})
+filterArr = arr.filter((ele,index,arr)=>{ return boolean})
+arr.reduce((prev,current,index,arr)=>{ return formerResult  })
+
+========================================================
+newfunction = oldfunction.bind(newThis,...arg)
+返回一个函数，函数执行时候this指向newThis
+...arg将与newfunction执行时候的参数合并作为参数传入
+
+
+=====================================================
+this指向，谁调用指向谁
+闭包中的函数被暴露在window中则指向window
+=================================================
+变量作用域  闭包
+函数作用域，内可以访问外部的，反之不行
+=================================================
+按值传递 与 按引用传递
+m=0；
+function go(m){//传入的m为基本类型，则为按值传递，对外部实际参数不影响
+   return m++
+}
+go(m)
+console.log(m)//0
+console.log(go(m))//1
+
+obj = {}
+function go(tar){//传入的tar为引用类型，tar采用.的方式赋值则对与obj同一个地址的副本对象进行操作，如果整体替换，副本的地址发生改变，不再指向obj，对外部obj不影响
+   tar.add = 2
+}
+go(obj)
+console.log(obj)//{add:2}
+
