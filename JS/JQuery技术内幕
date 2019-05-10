@@ -1,0 +1,29 @@
+js模拟方法的重载
+function addMethod(obj,name,f){
+        var old = obj[name];
+        obj[name] = function(){
+            if(f.length===arguments.length){
+                return f.apply(this,arguments);
+            }else{
+                return old.apply(this,arguments);
+            }
+        }
+    }
+    var people = {
+        name:["san","los","ang"]
+    }
+    function  find() {
+        console.log(this.name)
+    }
+    function find2(name){
+        return this.name.includes(name);
+    }
+    addMethod(people,"find",find)
+    addMethod(people,"find",find2)
+    console.log(people.find("san"))
+--------------------------------------------------------------
+短路表达式
+foo = a||b  ||前为false，计算后面的，为true，整个表达式为true
+bar = a&&b  &&前为true，计算后面的，为false，整个表达式为false
+多重短路
+a&&b&&c ==>a&&(b&&c)
