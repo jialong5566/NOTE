@@ -1,0 +1,16 @@
+启动aphathy，启动mysql，如果端口占用，在配置文件中将localhost的443改为4431
+打开localhost，点击myAdmin，
+点击new，创建数据库名字，设置字符集utf-8 gnerail ci
+创建表：设置表名和 字段数
+分别设置字段的各个属性
+
+SQL语句
+条件查找
+select * from student where name='john';
+增加
+INSERT INTO `student` (`name`,`class`) VALUES ('john','class1');
+删除
+DELETE from `student` where id='1';
+改
+UPDATE `student` SET ``
+

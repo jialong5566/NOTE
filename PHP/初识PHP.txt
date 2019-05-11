@@ -1,0 +1,59 @@
+启动Apathy，打开xampp安装目录下的hdocs文件夹，新建一个文件夹test，新建index.php文件
+在浏览器地址栏中输入localhost/test/index.php
+<?php
+    echo "hello php";//页面显示
+    $var = "this is a variable";//变量声明，块级作用域
+    isset($isexist);//判断是否设置
+    function test(){
+        $GLOBALS['var'] = "everywhere works";
+        global $var;//内部不能访问外部变量，除非变成全局
+        echo $var;
+    }
+    require__once('a.php');//找不到文件则整体报错
+    include__once('b.php');//有错也会执行
+    $arrayTest=array('0'=>"apple",1=>"orange");
+    echo json_encode($arrayTest);//输出{"apple","orange"}
+    echo $arrayTest[0];//apple
+    //会话机制
+    $session_start();
+    $_SESSION['word']="hi";
+?>
+<?php
+    $session_start();
+    echo $_SESSION['word'];//hi
+?>
+
+当form表单向xx.php发送数据时候：
+...?user=john&pass=123
+<?php
+    $session_start();
+    header("Content-type:test/html;charset=utf-8");
+    echo $_GET['user'];//john
+    echo $_POST['pass'];//POST方式
+    echo $_REQUEST['user'];//通用
+?>
+
+form表单发送ajax
+$.ajax({
+    url:'a.php',
+    data:{
+        user:'john',
+        pass:123
+    },
+    dataType:"json",
+    type:'get',
+    success:function(data){console.log(data)},
+    error:function(){}
+})
+<?php
+    $session_start();
+    header("Content-type:test/html;charset=utf-8");
+    $user = $_REQUEST['user'];
+    $pass = $_REQUEST['pass'];
+    if($user=="john"&&$pass==123){
+        echo json_encode(array('msg'=>'登陆成功','code'=>'ok'));
+    }else{
+        echo json_encode(array('msg'=>'登陆失败','code'=>'fail'));
+    }
+?>
+
