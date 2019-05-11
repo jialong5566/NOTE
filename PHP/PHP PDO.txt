@@ -1,0 +1,14 @@
+<?php
+$dbms = "mysql";
+$host = "localhost";
+$dbname = "news";//表的名字
+$user = "root";
+$pass = "";
+$dsn = "$dbms:host=$host;dbname=$dbname";
+
+try{
+    $dbh = new PDO($dsn,$user,$pass);
+}catch(PDOException $e){
+echo $e;
+}
+?>
