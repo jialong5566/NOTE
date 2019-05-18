@@ -1,0 +1,64 @@
+A is-a B 泛化（继承、实现）
+A has-a B 包含（组合、聚合、关联）
+A need-a B 依赖
+
+继承
+public class Child extends Father{
+    public和protected 修饰的属性和方法可以访问；
+    自己独有的属性和方法；
+    Override重写父类方法，保留结构，重写内容。
+    Father继承Object，Object没有父类
+    单继承，extends 后面只能写一个类
+    传递方式多继承
+    接口多实现
+}
+
+        Override                                    Overload
+1类     两继承关系的类                            一个类中的一组方法
+        子类重写父类的方法
+2权限   子类可以大于父类                          无要求
+3特征   父为final，子不能重写
+        父为static，子不存在重写
+        父为abstract
+        子为具体类，必重写
+        子为抽象类，可不重写
+
+4返回值  子小于等于父
+5名字    名字一样                                  名字一样
+6参数    父子一致                                  参数(个数，类型，顺序)必不一样
+7异常    父抛出运行异常，子无需处理                 不要求
+         父抛出编译错误，子抛出个数、类型少于父
+8方法体  父子不一样                                 父子不一样
+
+
+Object 类中的方法
+toString  不为null，打印className.packageName@hashCode;
+hashCode  本地c++代码
+getClass   反射
+equals    ==比较放的内容
+
+线程
+wait/notify/notifyAll
+
+System.gc();
+finalize() protected
+
+clone() protected
+
+Child child = new Child();
+先有Object类模板，再有Father类模板，再有Child类模板
+构造方法执行从里到外，方法执行从外到里
+this 代表 执行方法的对象
+super 代表 所在类的父类
+只能放在构造方法内第一行
+
+构造方法 第一行为隐形的super()，必须找出口实现父类继承，如果所有构造方法第一行都被this()占据则报错
+=============================================================================================
+A has-a B  包含关系
+组合关系紧密，做为一个整体。
+聚合关系，可以分割。
+关联关系，可以分割，后来形成的关系。
+
+A need-a B 依赖关系，临时组合，完事解散
+
+类设计原则：高内聚 低耦合 。

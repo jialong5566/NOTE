@@ -1,0 +1,38 @@
+顺序结构
+分支结构
+	单分支if else
+	多分支switch
+循环结构
+	while  do while
+	for
+switch(值) byte short int char enum String
+{
+    case 值1：
+    代码；
+    break;//关键字
+    default:
+    代码；
+
+}
+定义for循环名字
+out:for(初始条件;循环执行条件;执行后代码){
+	变量生命周期，从声明开始，用完回收。
+	break out;
+	continue out;
+}
+
+数组  长度固定
+定义 int[] x  int x[]
+初始化 静态初始化 int[] arr = new int[]{1,2,3}  //内容固定
+  		 int[] arr = {1,2,3}   //定义赋值可以省去new int[]
+
+       动态初始化 int[] arr = new int[length]   //length 长度的数组
+取值  int val= arr[index] //index从0开始，大于等于length时候会在运行时候报错
+增强for循环
+for(int i:arr){}
+
+主方法的调用
+虚拟机 java diyige dengdeng
+打印出diyige dengdeng
+
+

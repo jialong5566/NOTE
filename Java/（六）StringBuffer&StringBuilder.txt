@@ -1,0 +1,35 @@
+StringBuffer(1.0版本) /  StringBuilder(1.5版本)  java.lang
+实现三个接口  Serializable  CharSequence Appendable
+没有compareTo方法
+特性 可变字符串 char[] value  动态扩容
+构造方法
+new StringBuilder(int capacity);//默认size为16
+new StringBuilder("string");//string + 16 = builder.capacity();
+new StringBuilder(CharSequence);
+使用场景  频繁修改
+builder.append("add");
+builder.length();
+builder.charAt(int);
+builder.codePointAt(int);
+builder.delete(from[,to]);//自身改变，类型不变
+builder.deleteCharAt(int);
+builder.setCharAt(index,'c');
+builder.ensureCapacity(min);
+builder.indexOf("string"[,int]);
+builder.lastIndexOf("string"[,int]);
+builder.insert(index,"string");
+builder.replace(from,to,"string");
+newbuilder = builder.reverse();
+builder.trimToSize();//比设置的长度要小
+builder.setLength();//设置有效长度
+
+String = builder.toString();
+String = builder.substring(from[,to]);//返回String
+=============================================================
+正则表达式 RegEx  java.util.regex  Pattern类
+"[a-z&&[^b-f]]"
+Pattern p = Pattern.compile("\\d{6}")
+Matcher m = p.matcher("string")
+while(m.find()){
+   m.group();
+}

@@ -1,0 +1,75 @@
+File---java.io
+堆内存中一个对象<文件或者目录的映射,映射不上也不要紧，不分大小写>
+File file = new File("pathname");
+方法：
+file.canRead();
+file.canWrite();
+file.canExcute();
+file.isHidden();
+file.isFile();
+file.isDirectory();
+long file-length = file.length();
+long time = file.lastModifiers();
+file.getAbsolutePath();
+file.getName();
+boolean value = file.createNewFile();//IOException 创建皆为文件
+boolean value = file.mkdir();//一次只能创建一个不存在的文件夹
+file.mkdirs();//一次创建多个文件夹
+String parent-name = file.getParent();//父文件夹的路径
+File parent-file = file.getParentFile();
+String[] children = file.list();
+File[] files = file.listFiles();//文件夹专属方法，不为null是文件夹，length不为零为非空文件夹
+boolean value = file.delete();//文件或空文件夹
+file.deleteOnExist();//**
+Date date =  new Date(time);
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd KK:mm:ss");
+sdf.format(date);
+#文件夹遍历#
+============================================
+FileInputStream/FileOutputStream（一字节） java.io
+继承自InputStream/OutputStream
+FileInputStream fis  = new FileInputStream(file|"pathname");//FileNotFoundException
+int unicode = fis.read();[-1,0-65535]//IOException
+int count = fis.read(byte[] b = new byte[5]);//每次读为将b数组内容覆盖
+String result = new String(b,0,count);
+fis.available();//还有多少未读出的缓存的字节
+long num = fis.skip(long n);**?
+流关闭
+finally{
+   try{  if(fis!=null){fix.close();}   }
+   catch(){}
+}
+
+FileOutputStream fos = new FileOutputStream(file|"pathname");//文件路径不存在则自动创建。
+fos.write(int);//覆盖写入
+fos.write(int,true);//追加写入
+fos.flush();//管道清空
+FileOutputStream fos = new FileOutputStream(file|"pathname"，true);
+fos.write(byte[] b = new byte[]{97,98,99});//string.getBytes();
+
+FileReader/FileWriter(一字符两字节)   构造参数同上
+继承自InputStreamReader（继承自Reader）
+int code = fr.read();
+int count = fr.read(char[] c=new char[1024]);
+fw.write(int\char[]\string)
+
+//设置字符编码集  fie->setting->editor->file encoding->
+//记事本->另存为->编码选择utf-8
+===========================================================================
+缓冲流  高级流(用低级流构建)
+BufferedInputStream/BufferedOutputStream bis/bos = new BufferedInputStream/BufferedOutputStream(new FileInput/OutputStream());
+BufferedReader/BufferedWriter
+String line = br.readLine();//BufferedReader特有方法
+bw.newLine();//BufferedWriter特有方法
+====================================================================
+数组流   ByteArrayInputStream
+	CharArrayReader
+字符串流 StringReader StringWriter
+
+数据流   DataInputStream
+对象流(高级流)   ObjectInputStream/Output（传参低级流）
+         对象序列化(拆成文件)/反序列化
+条件一：类需要实现一个借口 public class Target implements Serializable
+条件二：加一个serialID     private long serialVersionUID = 1234567890L
+
+

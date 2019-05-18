@@ -1,0 +1,57 @@
+注解位置：①类②方法（构造）③属性④参数前
+注解作用：①注释说明 @Deprecated
+	  ②代码检测 @Override 未成功重新会提示
+	  ③携带信息 @SuppressWarning({...})
+...类型：
+"unused",  "serial",    "rawtypes", "deprecation","unchecked"  "all"
+未使用     不加序列号ID  未定义泛型   废弃的        无需检测     以上所有
+信息类型：
+基本类型、String、枚举enum、注解、以及它们的数组
+
+import static java.lang.annotation.ElementType.CONSTRUCTOR;//静态导入
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
+import java.lang.annotation.Retention;
+
+//自定义注解
+//一、元注解进行详细解释
+@Target({CONSTRUCTOR,METHOD,FIELD})//可以放的位置
+@Retention(RetentionPolicy.RUNTIME)//作用域(SOURCE-->CLASS-->RUNTIME)
+@inherited			   //可被继承否
+@Document 			   //文档能否记录
+public @interface MyAnnotation {
+    public static final String name = "annotation-name";
+    //方法必须有返回值，四种以及它们的数组
+    public abstract String[] value() default "zzt";
+    int test();
+}
+
+//二、Person类中的注解
+public class Person{
+    @MyAnnotation(value={"zzt","18","male"},test=10)//有方法必使用，只是参数搬运工
+    private String name;
+    @MyAnnotation({"zzt","18","male"})
+    public Person();
+}
+
+public static void main(String[] args){
+    //先找到Person类，再找属性，再找对应注解
+
+    try{
+        Class clazz = Person.class;
+    	Field field = clazz.getDeclaredField("name");
+
+	/*属性调用方法
+        MyAnnotation anno = (MyAnnotation)field.getAnnotation(MyAnnotation.class);
+	String[] values = anno.value();
+	*/
+	//三、反射技术
+	Annotation a = field.getAnnotation(MyAnnotation.class);//获取Annotation
+	Class a-class = a.getClass();                          //相当于获取MyAnnotation
+	Method a-method = a-class.getMethod("value");          //MyAnnotation的方法
+	String[] values = (String[])a-method.invoke(a);	 	//方法执行
+    }catch(Exception e){
+    	e.printStackTrace();
+    }
+    
+} 

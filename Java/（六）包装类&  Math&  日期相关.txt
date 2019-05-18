@@ -1,0 +1,80 @@
+特殊：int--Integer  char--Character
+六个继承自Number，实习接口 Serializable Comparable
+xxxValue()用来拆箱，返回基本类型。
+char没有String参数的构造方法
+静态方法
+int value = Integer.parseInt("123");
+toBinaryString(int);
+toHexString(int);
+toOctolString(int);
+笔试
+equals方法重写了，比较的是实际的值
+Integer i = 200;//超出[-128,127]会new一个
+===============================================================================
+Math.abs(四) Math.max(四)  Math.min(四)
+double d = Math.pow(double a,double b)
+double d = Math.sqrt(double a)
+double r = Maht.random();//[0,1)
+double d = Math.ceil()
+double d = Math.floor()
+double d = Math.rint()
+int i = Math.round()
+
+Random类  java.util
+Random r = new Random();
+int i = r.nextInt();
+int i = r.nextInt(int bound);//bound 必正，否则IlligalArgumentException
+float f = r.nextFloat();
+double d = r.nextDouble();
+==========================================================
+UUID 类
+UUID uuid = UUID.randomUUID()；
+uuid.toString();//32位16进制字符串
+
+
+BigInteger   java.math  继承Number
+BigInteger bi = new BigInteger("123456789");
+四则运算：
+a.add(b)  a.sustract(b)  a.devide(b)  a.mutiply(b)
+
+
+
+BigDecimal  Number 构造方法可以带很多参数
+BigDecimal bd = new BigDecimal("132.456");
+bd.setScale(int 保留几位，ROUND 规则);
+
+
+DecimalFormat  java.text (此包中皆为格式化用)
+String res = new DecimalFormat("000.##").format("123.456");//0代表必须存在，#代表可有可无
+================================================================
+System
+方法 currentTimeMillis  gc(垃圾回收)  exit(0：关闭虚拟机)
+属性 out  in  err
+
+Date java.util
+构造方法  Date d = new Date();  new Date(long)
+重写了toString
+实例方法
+boolean b = d1.before(d2)/d1.after(d2)
+d.setTime(long);
+long l = d.getTime();
+int i = d1.compareTo(d2);
+
+DateFormat 类 抽象类 子类：SimpleDateFormat
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy MM dd HH mm ss");
+String res = sdf.format(d);
+
+Calendar  java.util  构造方法为protected
+Calendar c = Calendar.getInstance();
+方法 after before  setTime
+Date d = c.getTime();
+long l = c.getTimeMillis();
+TimeZone tz = c.getTimeZone();
+int y = c.get(Calendar.YEAR);
+c.set(Calendar.YEAR,2015);
+toString重写  包名.类名[name=value...]
+
+TimeZone tz = TimeZone.getDefault();
+tz.getID();//Aisa/Shanghai
+tz.getDisplayName();//中国标准时间
+

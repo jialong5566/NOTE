@@ -1,0 +1,63 @@
+程序：一组静态的代码；
+进程：正在运行的程序；
+线程：正在执行程序中的小单元；操作系统级别CPU
+
+创建线程--》就绪状态--》执行状态--》等待（挂起）--》异常/死亡--》再就绪
+
+new         start      run         wait       exception/over   notify/notifyAll
+
+实现一个线程：1、描述一个类。2、继承父类Thread（单继承且直接继承）。3、重写run方法。4、调用start。
+	     方法二：1、描述一个类。2.、实现一个借口Runnable。3、new一个对象。4、用Thread构造一个参数为该对象的线程对象。5新对象调用start。
+
+线程安全：特征修饰符 synchronized
+两种用法
+一、放在方法结构上
+public class Target(){
+    public synchronized void syncmethod(){//syncmethod被调用时候锁定的是Target,Target同一时间只能做一件事}
+}
+二、放在（构造、块）方法内部。
+public void test(){
+    synchronized(Target){
+        //执行时候锁定Target
+    }
+}
+三、切换状态
+wait notify notifyAll 皆为Object类中的方法
+sleep setPriority getPriority为Thread上的方法
+this.wait();//this 告诉访问者，让访问者等待（你给我等着）//InteruptException
+假死状态，所有线程都进入wait状态。
+this.notifyAll();//先唤醒，后等待
+obj.setPriority(10);//设置优先级别
+多线程并发，抢资源会出现的异常：IlligalMonitorStateException//让wait的对象不是线程所有者。
+sleep为静态方法，执行的线程睡眠，自己唤醒
+=================================================================================================
+join方法 Thread类中的方法
+public class OutThread extends Thread{
+    public void run(){
+        Thread inner = new InnerThread();
+        inner.start();
+        try{
+	    inner.join();//join传参2000，则为out的强制执行时间，不管加入的inner是否执行完。out因inner调用join被锁定的两个时间点，1join的一瞬间，2inner执行完成的时候。
+	}catch(InteruptException e){}
+    }
+}
+
+join源码
+inner.join(0){
+    while(this.isAlive()){  wait(0); }//inner活着，inner让访问它的线程out等待。
+};
+
+
+死锁：哲学家吃饭
+解决：形成时间差；对象不共用
+================================================================================================
+Timer类 java.util
+
+Timer timer = new Timer();
+Date fistTime = sdf.parse("2019-06-05 12:00:00");
+timer.schedule(new TimerTask(){//匿名内部类
+    public void run(){
+    
+    }
+	
+},firstTime,period);

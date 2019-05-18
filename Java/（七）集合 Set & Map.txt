@@ -1,0 +1,94 @@
+Set
+----------------------
+HashSet（散列表）    java.util
+构造方法
+Collection 参数
+初始Capacity 参数[,扩容因子参数]
+方法
+add(E);//无序，无index
+addAll(Collection c);
+retainAll();
+removeAll();
+boolean b = remove(Object o);
+不能修改
+遍历方式：迭代器
+Iterator<E> it = hashSet.iterator();
+boolean b = it.hasNext();
+E e = it.next();
+
+不重复的原则
+equals()&&hashCode()；//重写
+拒绝重复写入
+
+---------------------
+TreeSet （二叉树）java.util
+构造方法
+1 无参数
+2 Collection 参数
+需要实现 Comparable 接口
+重写 compareTo方法
+排序规则
+compareTo();//方法
+==================================================================
+
+Map
+--------------------------------
+HashMap  java.util
+key-value格式存储  key无序无重复
+构造方法
+无参数
+初始容量
+初始容量，扩容因子
+collection集合
+
+
+方法
+boolean b = map.put(k,v);//相同key，覆盖存入
+putAll(c);
+
+value = map.remove(key);
+map.replace(key[,oldVal],newVal);
+value = map.get(key);
+map.toString();//{k=v,k1=v2...}
+
+遍历方法
+Set<E> keys = map.keySet();
+Set<Map.Entry<E,T>> entries = map.entrySet();
+Iterator<Map.Entry<E,T>> it = entries.iterator();
+entry = it.next();
+E e = entry.getKey();
+T t = entry.getValue();
+
+
+Iterator<E> it = keys.iterator();
+while(it.hasNext()){
+    T value = map.get(it.next());
+}
+
+map.clear();
+map.containsKey(key);
+map.containsValue(val);
+map.getOrDefault(try-key,default-val);
+map.putIfAbsent(key,val);
+map.size();
+T[] values = map.values();
+
+使用场景
+找寻唯一key对应的元素
+希望自动排序 使用Tree结构，但是性能不如Hash结构的好
+
+数据结构：散列表（数组+链表）
+key，value 包装成一个Entry 对象
+
+-------------------------------
+TreeMap java.util
+
+构造方法
+无参数，map参数
+
+方法
+put  get  remove   firtEntry  floorEntry    replace  size
+
+数据结构：红黑二叉树
+key需要实现Comparable 接口，
+里面放Entry 对象 ，下一个小放到左边，大放到右边，一样就覆盖

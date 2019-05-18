@@ -1,0 +1,84 @@
+                                 集合
+                                   |
+                       /————————-----------------------——---------————\
+                   Collection                                                      Map
+                       |
+                  /--------------------|---------------------------\
+接口        List(有序可重)           Queue                    Set(无序不重)
+                  |                    |                       |
+       /----------|----------|---------|                 |-----------------|
+    ArrayList    Vector    Stack       LinkedList       HashSet          TreeSet
+Object[]（底层）
+构造方法
+new ArrayList(int);//默认为10
+new ArrayList(Collection c);
+
+
+补充知识
+泛型：一个符号代替某种类型，使用时用具体数据类型将符号替换掉
+1泛型类 类定义时候
+2泛型接口  子类实现必须添加泛型
+3泛型方法
+4高级泛型 规范边界  extend  super
+ArrayList<String> strarr = new ArrayList<String>();
+
+方法
+list.add("a");
+list.add(i,"b");
+list.addAll(index, Collection<? extend E> c);
+
+list.set(index,"b");
+list.get(i);//IndexOutOfBound异常
+list.remove(i);
+list.remove("a");//list.remove(1) 默认为参数
+list.removeAll();//差集
+list.retainAll();//交集
+
+list.size();
+list.toString();==>[a,b,c...]
+list.clear();
+
+list.contains("a");
+list.ensurenCapacity(min);
+int i = list.indexOf("a");
+boolean b = list.isEmpty();
+
+List<E> newlist = list.subList(2,5);
+Object[] objarr = list.toArray();
+String[] strarr = list.toArray(new String[list.size()]);
+list.trimToSize();
+=======================================================
+Vector java.util  ArrayList早期版本，同步
+扩容方式为2倍
+常用方法
+Vector<String> v = new Vector<String>(10,5);
+v.containsAll(v2);
+v.firstElement();
+v.get(index);
+================================================
+Stack 继承了Vector  java.util
+
+Stack<Integer> stack = new Stack<>();
+方法
+stack.push(1);
+Integer i = stack.pop();
+Integer i = stack.peek();
+boolean b = stack.empty();
+int i = stack.search(6);//不是索引，是位置，从1开始
+====================================================
+Queue  接口 java.util
+LinkedList  ArrayDeque
+构造方法为无参
+boolean b = link.offer("a");//这三个自处理异常
+String str = link.poll();
+String str = link.peek();
+
+LinkedList
+构造方法 无参数或者 Collection 参数的构造方法
+addAll();
+addFirst();
+contains();
+clear();
+element();
+getFirst();
+getLast();

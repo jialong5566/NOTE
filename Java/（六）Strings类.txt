@@ -1,0 +1,50 @@
+实现三个接口  Serializable CharSequece Comparable
+
+构造方法
+赋值/new String("abc"|StringBuffer|StringBuider|byte[]|char[])
+参数为数组的方法可以有偏移量（[],start,end）
+
+方法（第一梯队）
+equals方法
+先比较放的内容，再比较类型，继承自String后造型回去，进行每个字母的比较，
+不可变特性  private    final        char[]        value
+          外部不能访问 v地址不能改  数组长度不能改
+hashCode()
+重写了 h += h*31
+compareTo方法
+用长度短的每一位和长的每一位比，找出第一个不一样的，都一样比长度
+toString  返回this
+equalsIgnoreCase();
+compareToIgnoreCase();
+
+方法（第二梯队）
+char c  = charAt(int);
+int ascii =  codePointAt(int);
+String newstr = "abc".concat("def");
+length();
+String[] strArr = str.split(String regexp[,int limit]);
+boolean = str.matches(String regexp);
+newstr = str.substring(int start[,int end])
+
+方法（第三梯队）
+boolean = contains(CharSequence c);//
+boolean = startsWith();//
+boolean = endsWith();//
+getBytes();//中文有问题   getBytes("utf-8");
+toCharArray();
+int index = indexOf("string",start);
+int index = indexOf(98,start);//charCode 对应的位置
+int last = lastIndexOf("string"|int,start);
+boolean = isEmpty();
+newstr = str.replace('oldChar','newChar');
+newstr = str.replace("oldString","newString");
+newstr = str.replaceAll("old","new");
+new str = str.replaceFirst("old","new");
+
+upper = str.toUpperCase();
+lower = str.toLowerCase();
+
+trimstr = str.trim();
+
+
+str = String.valueOf(填啥返啥的字符串);

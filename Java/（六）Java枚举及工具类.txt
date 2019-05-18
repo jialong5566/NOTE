@@ -1,0 +1,38 @@
+1、自己模仿一个enum
+  private Constructor()
+  public static final 类 对象= new 类（）；
+2、官方方式   java.lang
+  public enum Day{
+	Monday,Tuesday...//单继承自Enum(继承自Object)，还有CompareTo。。
+  }
+3、方法
+name()
+ordinal()；//从0开始
+valueOf("enum-name")
+values()
+compareTo()
+toString()//可以重写
+4、带属性写法
+  public enum Day{
+	Monday("周一"，1),Tuesday;//先描述样子，根据所有样子写需要的属性，和构造方法
+	private String name;
+	private int index;
+	private Day(){};
+	private Day(String name,int index){//方法必私有
+	   this.name = name;
+	   this.index = index;
+	}
+	public String getName(){
+	    return this.name
+	}
+  }
+===========================================================================
+GC
+Object类中的finalize方法重写
+System.gc()；触发执行
+
+RunTime类，不能new，私有构造方法，堆内存溢出 OutOfMemoryError
+Runtime rt = Runtime.getRuntime();//看内存是同一台电脑，单例即可
+long max = rt.maxMemory();
+long total = rt.totalMemory();//可以用的，包括free
+long free = rt.freeMemory();

@@ -1,0 +1,47 @@
+一 获取类
+Class clazz = Class.forName("packagename.classname");//ClassNotFoundException
+Class clazz = MyClass.class;
+Class clazz = obj.getClass();
+二 常用方法
+int ms = clazz.getModifiers();//权限、特征修饰符（代表数字之和）
+String fullname = clazz.getName();//"packagename.classname"
+String simplename = clazz.getSimpleName();//"classname"
+Package p = clazz.getPackage()
+String pname = p.getName()
+Class superclass = clazz.getSuperClass()//父类
+Class[] classes = clazz.getInterfaces()//所有父类
+Class[] innerclasses = clazz.getClasses()
+三 属性
+Field field = clazz.getField("fieldname");//公有
+Field[] fields = clazz.getFields();//包括继承过来的
+Field field = clazz.getDeclaredField("filename");//私有
+Field[] fields = clazz.getDeclaredFields();
+int fieldmodifiers = field.getModifiers();
+Class fieldclass = field.getType();//属性类型
+String fieldname = field.getName();
+取值和赋值
+field.setAccessible(ture)//私有属性设置
+field.set(obj,value)
+Object of = field.get(obj)
+//应用举例
+String str = "abc";
+Class clazz = str.getClass();
+Field f = clazz.getField("value")
+f.setAccesible(true)
+char[] target = (char[])f.get(str)
+target[0]="e";target[1]="f";target[2]="g"
+四 方法
+Method method = clazz.getMethod("method-name",String.class,...)
+Method[] methods = clazz.getMethods();
+Method private-method = clazz.getDeclaredMethod("private-method-name");
+private-method.setAccesible(true);
+Class methodtype = method.getReturnType();//
+String method-name = method.getName();//
+Class[] method-parameters = method.getParametersTypes();//
+Class[] method-exceptiontyps = method.getExceptionTypes();//
+如何调用
+String str = (String)method.invoke(obj,"string",...)
+五 构造方法(没有getRetureType()方法)
+Constructor constructor = clazz.getConstructor();//名字省略
+Person p = (Person)constructor.newInstance("John",12);//传参
+Constructor private-con = clazz.getDeclaredConstructor();
