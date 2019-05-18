@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $dbms = "mysql";
 $host = "localhost";
 $dbname = "news";//表的名字
@@ -8,7 +8,15 @@ $dsn = "$dbms:host=$host;dbname=$dbname";
 
 try{
     $dbh = new PDO($dsn,$user,$pass);
+    foreach($dbh->query("select * from `news`") as $row){
+	print_r($row);
+    }
+    $insert = "insert int `news`(`newstitle`,`newscontent`) values ('beijing won','beijing will hold the 2008 olimpicgame');"
+    $res = $dbh->exec($insert);
+    echo "the impack line of db is ".$res;
+
+    $dbh=null;
 }catch(PDOException $e){
-echo $e;
+	echo $e;
 }
 ?>
