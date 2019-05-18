@@ -1,0 +1,53 @@
+GUI 图形用户接口
+AWT
+Swing
+            管理组件方式
+窗体 JFrame    边界式
+面板 JPanel    流式
+事件 ActionListener
+    KeyListener
+    MouseListener
+
+//创建窗体
+JFrame frame = new JFrame("title");
+frame.setTitle("my-title");
+frame.setResizable(false);
+//创建面板
+JPanel panel = new JPanel();
+//添加按钮
+JButton button = new JButton("click");
+//创建一个文本框
+JTextField textfield = new JTextField("content"|20);
+//文本域
+JTextArea textarea = new JTextArea(rows,cols);
+//滚动区域，放置文本域
+JScrollPane scroll = new JScrollPane(textarea);
+frame.add(scroll);
+//菜单，固定在上面
+JMenuBar bar = new JMenuBar();
+JMenu menu = new JMenu("File");
+JMenuItem item = new JMenuItem("open");
+menu.add(item);
+bar.add(menu);
+frame.setJMenuBar(bar);
+//密码框
+JPasswordField password = new JPasswordField();
+//标签
+JLabel label = new JLabel("label");
+//复选框
+JCheckBox checkbox = new JCheckBox("checkbox");
+//单选框，放在一个group里面才有效果
+JRadio radio = new JRadio("radio");
+ButtonGroup group = new ButtonGroup();
+group.add();
+
+panel.add(textfield);
+panel.add(button);
+frame.add(panel);
+//设置窗体的显示状态
+frame.setVisible(true);
+//设置点击关闭按钮时候的动作结果
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//设置窗体的初始状态,不用加单位
+frame.setBounds(top,left,width,height);
+//
