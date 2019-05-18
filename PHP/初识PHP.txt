@@ -1,5 +1,6 @@
 启动Apathy，打开xampp安装目录下的hdocs文件夹，新建一个文件夹test，新建index.php文件
 在浏览器地址栏中输入localhost/test/index.php
+==============================================
 <?php
     echo "hello php";//页面显示
 
