@@ -1,0 +1,46 @@
+supervisor  app.js//自动启动服务
+了解 RESTful 软件设计
+
+var express = require("express")
+var app = express();
+静态页面读取
+app.use(express.static("public"))
+此时请求的html页面中的css js都为public文件夹下的
+
+路由参数
+app.get("*",function(request,response){
+	response.send("hello" + request.query.user);
+	response.end();
+})
+动态路由
+app.get("/index/:id",function(request,response){
+	response.send("hello" + request.params.id);
+	response.end();
+})
+输出json
+app.get("/index/:id",function(request,response){
+	response.json({name:request.query.user});
+	response.end();
+})
+重定向
+app.get("/index/:id",function(request,response){
+	response.redirect("");
+	response.end();
+})
+页面发送
+app.get("/index/:id",function(request,response){
+	response.sendFile(__dirname+"/view/" + request.url);
+	response.end();
+})
+POST 方式数据获取
+var bodyParser = require("body-parser")
+var urlencodedParser = bodyParser.urlencoded({
+	extended:false
+})
+app.post("/index",urlencodedParser,function(request,response){
+	response(request.body);
+})
+app.listen(3000,function(){
+	console.log("server is running");
+})
+

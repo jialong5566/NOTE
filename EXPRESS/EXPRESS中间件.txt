@@ -1,0 +1,29 @@
+app.get("/index",function(request,response,next){
+	request.data = "213";
+},function(request,response,next){
+	request.data;//213
+	response.send("over");
+})
+每一个路由都会执行的中间件
+app.use(function(req,res,next){
+	next();
+})
+
+指向inde/:id的请求会执行的中间件
+app.use("index/:id",function(req,res,next){
+	next();
+})
+
+如果定义了同路径的中间件，有res.end();则不会执行剩余中间件
+
+var router = express.Router();//和app=express()类似。
+
+
+第三方中间件
+app.use(cookieParser);
+app.use("index/",function(req,res,next){
+	req.cookies = {a:123};
+})
+app.use("index/",function(req,res,next){
+	req.cookies.a;//123
+})
