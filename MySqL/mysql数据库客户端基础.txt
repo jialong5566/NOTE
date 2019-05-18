@@ -1,0 +1,28 @@
+增加环境变量到path
+命令行中输入
+mysql -u root -p
+输入密码，登录成功
+show databases;
+use school;
+
+CREATE TABLE `school`.`teacher` (
+`id` INT NOT NULL AUTO_INCREMENT COMMENT '',
+PRIMARY KEY (`id`) COMMENT '');
+查询
+select * from student order by age desc;//默认为asc
+select cout(*) from student;
+select max(age),student.* from student;
+select now();
+select concat(stu_name,'\t',age) from student;
+其他函数 sqrt rand
+select * from student where age>=3 and age<=5;
+select * from student where age between 3 and 5;
+
+模糊查询
+select * from student where stu_name like '老%';
+
+--这里是注释;
+
+表的连用
+select 表1.字段，表2.字段 from 表1，表2 where 表1.字段=表2.字段；
+select 表1.字段，表2.字段 from 表1 left join 表2 on 表1.字段=表2.字段；
