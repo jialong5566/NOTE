@@ -1,0 +1,66 @@
+软件危机
+软件工程学 结构化方法和面向对象
+OOP：三个目标 重用性 灵活性 扩展性
+OOP特点：封装 继承 多态 抽象
+
+类的成员属性不能是 表达式 public $var = 1+2
+                  变量   public $var = $var2
+                  方法/函数调用 public self::myStaticMethod();
+
+类的声明：
+class Person
+        {
+            public $age;//属性无初值
+            private $address="China";//属性有初值
+            public $laji="garbage";
+            private function getAddress(){
+                return $this->$address;
+            }
+            public function say($sth){
+                echo "she said {$sth}";
+            }
+            public function info(){
+                $this->say("hello");                 //类内部调用本类方法
+                return $this->age;
+            }
+            public function __construct($name,$age){ //构造方法，new时候执行
+                $this->age=$age;                     //类内部调用本类属性赋值
+            }
+            public function __destruct(){            //实例对象不再被引用时候执行
+                echo "game over";
+            }
+            public function __set($key,$val){//设置非public的$key的时候，对设置的值$val进行劫持
+                if($key=="address"){
+                     echo $val." changed";
+                }
+
+            }
+            public function __get($key){//获取非public的$key的时候
+                if($key=="address"){
+                    return "no way";
+                }
+            }
+            public function __isset($key){
+                if($key=="age"){
+                    return true;//返回boolean值
+                }
+            }
+            public function __unset($key){
+                if($key=="laji"){
+                    echo " be more early ";
+                }
+            }
+        }
+        $jia = new Person("long",25);//创造实例
+        $jia->age=33;//实例进行操作
+        $age = $jia->info();//实例方法调用
+        echo $age;
+        $jia->address = "uk";
+        echo $jia->address;
+        echo "<br/>";
+        var_dump(isset($jia->age));//var_dump(expression)打印结果 类型（值） 只对pulic游泳
+        echo $jia->laji." begin ";
+        unset($jia->laji);//卸载属性
+        echo $jia->laji;
+
+

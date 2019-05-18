@@ -1,0 +1,32 @@
+有抽象方法的类一定是抽象类
+抽象类可以没有抽象方法
+
+<?php
+        interface Animal{    //声明接口
+            const BLOOD="red";//接口中只有静态常量，没有变量
+            public function eat();//所有方法皆为抽象方法
+        }
+        abstract class Person implements Animal   //抽象类不能被实例化，一个类可以实现多个接口
+        {
+            const Tell=true;
+            abstract function eat();//抽象方法没有方法体
+        }
+        class Child extends Person{
+            const TEL="111";
+            const ID="unik";
+            function eat(){    //继承以后必须把抽象方法重写
+                echo self::ID; //内部使用self代表本类
+                echo "child eat";
+
+            }
+            public static function sleep(){
+                echo "zzzz";
+            }
+        }
+        $ch=new Child();
+        echo $ch::TEL;//静态常量外部访问
+        $ch->eat();
+        $ch::sleep();//静态方法
+
+
+        ?>

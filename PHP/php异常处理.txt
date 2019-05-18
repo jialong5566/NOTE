@@ -1,0 +1,9 @@
+自定义异常
+
+class myException extends Exception{
+    public function getAllInfo(){
+	return $this->getFile().$this->getLine().$this->getMessage().$this.getCode();
+    }
+}
+
+catch 抓取的异常先小后大，抓取最大的以后就不再抓取了。

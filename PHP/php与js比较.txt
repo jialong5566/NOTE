@@ -1,0 +1,32 @@
+<?php
+
+//自动加载类
+function __autoload($className){
+    require_once $className.'.php';
+}
+class Person{
+    function __toString()
+    {
+	return "Object";
+    }
+    function __sleep()//串行化时候执行
+    {
+	return array("name","age");
+    }
+    function __wake()//反串行化时候执行
+    {
+	$this->age=40;
+    }
+}
+echo new Person();//Object
+echo clone new Person();//Object
+$p1 = new Person();
+$p1_string = serialize($p1);
+$p1_obj = unserialize($p1_string);
+?>
+
+命名空间
+<?php
+namespace MyProject;
+
+?>

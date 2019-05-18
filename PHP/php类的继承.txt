@@ -1,0 +1,29 @@
+<?php
+        class Person
+        {
+            public $lastname;
+            private $firstname;//私有的不能继承
+            protected $age;//可以继承，外部不能访问
+            function __construct($name,$age){
+                $this->age=$age;
+                $this->lastname=$name;
+            }
+            public function makeMoney(){
+                echo "make money";
+            }
+        }
+
+        class Yel extends Person{
+            function __construct($name,$age,$firstname){
+                parent::__construct($name,$age);//调用父类方法
+                $this->firstname=$firstname;
+            }
+            public function makeMoney(){
+                parent::makeMoney();
+                echo "make more money";
+            }
+        }
+        $y = new Yel("jia",22,"long");
+        $y->makeMoney("23");
+        echo $y->firstname;
+        ?>
