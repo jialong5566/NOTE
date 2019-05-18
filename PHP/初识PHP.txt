@@ -2,27 +2,32 @@
 在浏览器地址栏中输入localhost/test/index.php
 <?php
     echo "hello php";//页面显示
+
     $var = "this is a variable";//变量声明，块级作用域
-    isset($isexist);//判断是否设置
+
+    isset($isexist);//判断变量$isexist是否设置
     function test(){
-        $GLOBALS['var'] = "everywhere works";
+        $GLOBALS['var'] = "everywhere works";//定义全局变量
         global $var;//内部不能访问外部变量，除非变成全局
         echo $var;
     }
     require__once('a.php');//找不到文件则整体报错
     include__once('b.php');//有错也会执行
-    $arrayTest=array('0'=>"apple",1=>"orange");
+
+    $arrayTest=array('0'=>"apple",1=>"orange");//数组的声明定义
     echo json_encode($arrayTest);//输出{"apple","orange"}
     echo $arrayTest[0];//apple
     //会话机制
     $session_start();
-    $_SESSION['word']="hi";
+    $_SESSION['word']="hi";//传递的信息
 ?>
+--------------------------------------
+另一个php页面与上面php页面通讯时：
 <?php
     $session_start();
     echo $_SESSION['word'];//hi
 ?>
-
+================================================
 当form表单向xx.php发送数据时候：
 ...?user=john&pass=123
 <?php
