@@ -1,0 +1,108 @@
+内置编辑器
+vi a.js
+按i进入编辑模式
+编辑完毕 :wq  保存并退出
+
+var http = require("http");
+var server = http.createServer(function(request,reponse){
+	response.writeHead(200,{'Content-Tyep':'text/plain'});
+	response.end('hello\n');
+}).listen(8080);
+server.on('listening',function(){console.log("server is running at 8080")})
+
+repl模式，输入node
+退出ctrl + c 两次
+.exit
+.help
+.load xx.js
+
+
+npm
+npm install xx -g  全局
+npm install xx -D  开发
+npm install xx --save 生产
+npm uninstall xx 卸载
+npm search xx 搜索
+npm help
+npm help install
+
+回调机制（函数调用分 同步、异步、回调）
+双向机制
+var fs=require("fs");
+var data = fs.readFileSync("xx.txt").toString();//同步读取
+var data = fs.readFile("xx.txt",function(err,data){//异步读取
+	if(!err){
+		console.log(data);
+	}
+})
+fs.stat("path",function(err,stats){...})
+
+事件驱动机制
+事件驱动模型：单线程
+示例
+var events = require("events");
+var emitter = new events.EventEmitter();
+emitter.on("xxx",function(){
+	"xxx事件的执行"
+});
+emitter.emit("xxx");
+
+
+模块化
+加载流程：先看是否在缓冲区内，否则看是否是原生模块，看是否在原生模块缓冲区，否则加载并缓冲，不是原生模块就找对应文件进行缓存
+示例
+hello.js
+function Hello(){
+	var name;
+	this.setName = function(a){ name = a }
+	this.say = function(){ console.log(name +"hao ") }
+}
+module.export.hello = Hello
+
+main.js
+var Hello = require("hello.js");
+hello = new Hello();
+hello.setName("john");
+hello.say();
+
+函数
+命名函数与匿名函数
+
+路由
+var url = require("url");
+url.parse(request.url).pathname;
+url.parse(request.url,true).query;
+
+post请求
+request.on("data",function(chunk){
+	data+=chunk;
+})
+
+全局对象 global
+__filename
+__dirname
+process的属性与事件
+exit
+beforeExit
+uncaughtException
+Signal
+
+util工具
+util.inherits(Origin,Target)
+util.inspect(obj,true)
+
+underscore库方法更多
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
