@@ -1,0 +1,114 @@
+TC39 javascript发展委员会
+初稿--建议---草案---候选---完成
+模块语法
+声明式语法，静态的
+import {$} from 'jquery.js'
+export {$}
+按需引入
+import {each,...}from 'underscore.js'
+export {each ,map ,...}
+============================================
+数据类型
+值类型numer string boolean undefined null Symbol
+址 Object
+typeof判断
+
+变量声明  默认值为undefined
+var 函数作用域			变量声明提前
+let const 块级作用域		暂时性死区
+直接使用 全局作用域
+
+函数
+1、函数声明
+2、函数表达式
+3、构造函数实现
+4、箭头函数
+
+函数签名只和名字有关
+
+rest参数，只能放在末尾，只能一份
+参数默认值
+
+对象
+构造函数
+函数有prototype    __proto__
+	       内有constructor
+对象有__proto__
+
+this 和 作用域
+1、严格模式undefined
+2、node中为global
+   浏览器中为window
+
+call & apply
+
+继承
+super
+
+语法
+label statement
+loop:for(){...break loop;...}
+{a:2}默认a为label，2为语句
+原则：语句优先
+{a:1,b:2}逗号后面必须是表达式，没有b:2这种表达式，会报错
+
+IIFE
+[function(){}()]
+运算符和操作符要求后面必为表达式
+1，function(){}()
+1^function(){}()
+1>function(){}()
+
+高阶函数
+参数或返回值为函数
+
+闭包
+1 函数
+2 环境，函数创建时的局部变量
+
+惰性函数
+直接改变函数声明对应的函数体
+
+科里化
+部分参数生成函数
+把参数中的定量抽出来
+
+ramdar 函数式编程
+
+尾递归！！自己看
+
+反科里化
+数组的push
+==============================================
+作用域
+全局作用域
+函数作用域
+块级作用域
+
+作用域链
+函数也是一个对象
+[[scope]]属性
+
+变量与函数声明提前
+
+this关键字
+call apply bind
+
+构造函数的返回值会覆盖this
+
+Object.constructor = Function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
